@@ -9,7 +9,9 @@ function unit(){
     const knownUnits=['cuillère à café', 'g','l', 'ml', 'cuillère', 'cuillères']
     
 
-    const combinator= T.blank().thenRight(x.stringIn(knownUnits)).thenLeft(T.blank());
+    const combinator= T.blank()
+        .thenRight(x.stringIn(knownUnits))
+        .thenLeft(T.blank());
 
     return combinator;
     //return combinator.opt().map(x=>x.value);
@@ -17,11 +19,9 @@ function unit(){
 }
 
 function ingredient(){
-    const combinator= F.not(C.string('- ')).rep().map(c=>c.join(''));
+    const combinator= C.notString('- ').rep().map(c=>c.join(''));
 
     return combinator;
-    
-    
 
 }
 
@@ -31,12 +31,8 @@ function structuredLine(){
 }
 
 
-function line(){
-    return C.string('- ')
-        .thenRight(F.not(C.string('- ')).rep().map(c=>c.join('')));
-}
+
 
 module.exports={
-    line,
     structuredLine
 }
