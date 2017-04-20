@@ -3,10 +3,10 @@ const {stream, F, C, N, X, T} = require('parser-combinator');
 
 /**
 Using the Extractor Bundle to help us
- - Using x.wordsUntil(lineStop) to work correctly
+ - In combinaotr(): Using x.wordsUntil(lineStop) to work correctly
  - find good units
  - Escaping Html, Using debug to find where we are
- -
+ - Using the Flow bundle
  **/
 
 
@@ -39,15 +39,8 @@ function ingredient() {
 
     const ignore = html.or(T.eol).map(c=>'');
 
-    // Oups, bug: We should also be using x.wordsUntil(html)
-    const word = F.try(ignore).or(C.notString('- ')).rep().map(c=>c.join(''));
-
-    
-    let combinator = word;
-
-    
-    return combinator;
-
+    // We could also be using x.wordsUntil(html), but some lines have not
+    return F.try(ignore).or(F.not(lineStop)).rep().map(c=>c.join(''));
 
 }
 

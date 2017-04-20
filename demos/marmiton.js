@@ -38,7 +38,7 @@ fetch(marmiton+tikka)
     });
 
 
-
+// rep() these lines
 function line(){
     return C.string('- ')
         .thenRight(F.not(C.string('- ')).rep().map(c=>c.join('')));
