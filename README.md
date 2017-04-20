@@ -35,8 +35,10 @@ Keywords: **variations** and **maintainability**
 # Quick Examples
 
 
-... Live Demos 
-
+## Live Demos:
+ 
+* Floor Notation
+* Tikka Masala
 
 # Explanations
 
@@ -61,11 +63,13 @@ console.log( parsing.value === 4 );
 
 
 
-## Explanations
+## Definition
 
-According to Wikipedia *"in functional programming, a parser combinator is a 
+*in functional programming, a parser combinator is a 
 higher-order function that accepts several parsers as input and returns a new 
-parser as its output."* 
+parser as its output.*
+ 
+![](./images/curry-paste.png)
 
 ## The Monoid structure
 
@@ -78,8 +82,8 @@ parser as its output."*
 
 
 * Streams
-* Class `Parser
-* What the `fold` ?
+* Class `Parser`
+* What's the `fold` ?
 * Genlex
 
 ... Live demo
@@ -88,8 +92,6 @@ parser as its output."*
 ## The Flow Bundle
  
 The flow bundle will mix ingredients together.
-
-Most important:
 
 * `F.try(parser).or(otherParser)` 
 * `F.any`: Accept any character
@@ -123,6 +125,9 @@ Others:
 * `digits`: accept many digits, and return a **string**.
 * `integer`: accept any positive or negative integer
 
+## Live demo
+
+.. improving parsing
 
 # The Standard bundles
 
@@ -164,6 +169,21 @@ Others:
         }
 
 
+## Live demo
+
+... Improving again the parsing
+
+
 ## JSON Bundle and Markdown Bundle
 
 * Total Customization of the markdown parser 
+
+## Gotcha's
+
+* The long Walk
+* Complicated to find *branches*
+* Hard to debug after 20 `parse()` 
+* Performance issues
+* Sometimes locked
+
+## Questions ?

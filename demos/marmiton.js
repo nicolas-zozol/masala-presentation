@@ -7,6 +7,7 @@ const bundle = require('./marmiton-bundle');
 let recipeText;
 
 const marmiton = 'http://www.marmiton.org/recettes/';
+// Oh, it's one 's' for masala !
 const tikka = 'recette_poulet-tikka-massala_21628.aspx';
 
 const selector = 'div.m_content_recette_main .m_content_recette_ingredients';
