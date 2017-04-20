@@ -1,5 +1,13 @@
 const {stream, F, C,N, T} = require('parser-combinator');
 
+/**
+
+We need to cheat and start with a test extraction
+Creating a bundle to split line with functions :
+    - quantity
+    - unit
+    - ingredient
+ **/
 
 function quantity(){
     return N.integer;

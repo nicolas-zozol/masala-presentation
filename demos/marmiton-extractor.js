@@ -1,6 +1,18 @@
-const {F, C, N, X, T} = require('parser-combinator');
+const {stream, F, C, N, X, T} = require('parser-combinator');
+
+
+/**
+Using the Extractor Bundle to help us
+ - Using x.wordsUntil(lineStop) to work correctly
+ - find good units
+ - Escaping Html, Using debug to find where we are
+ -
+ **/
+
+
 const lineStop = C.string('- ');
 let x = new X();
+
 
 
 function quantity() {
@@ -27,12 +39,15 @@ function ingredient() {
 
     const ignore = html.or(T.eol).map(c=>'');
 
-    //let combinator= x.words().rep();
+    // Oups, bug: We should also be using x.wordsUntil(html)
     const word = F.try(ignore).or(C.notString('- ')).rep().map(c=>c.join(''));
 
+    
     let combinator = word;
 
+    
     return combinator;
+
 
 }
 
@@ -45,7 +60,11 @@ function marmitonCombinator() {
     return x.wordsUntil(lineStop).thenRight(structuredLine().rep());
 }
 
+function parse(document){
+   return  marmitonCombinator().parse(stream.ofString(document));
+}
 
 module.exports = {
-    marmitonCombinator
+    marmitonCombinator,
+    parse
 }
