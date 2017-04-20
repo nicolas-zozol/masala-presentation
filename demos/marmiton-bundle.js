@@ -1,20 +1,19 @@
-const {F, C,N, X, T} = require('parser-combinator');
-const x = new X();
+const {stream, F, C,N, T} = require('parser-combinator');
+
 
 function quantity(){
     return N.integer;
 }
 
 function unit(){
-    const knownUnits=['cuillère à café', 'g','l', 'ml', 'cuillère', 'cuillères']
-    
 
     const combinator= T.blank()
-        .thenRight(x.stringIn(knownUnits))
+        .thenRight(C.letters)
         .thenLeft(T.blank());
 
     return combinator;
     //return combinator.opt().map(x=>x.value);
+    // problems : no utf-8, no cuillère à café
 
 }
 
@@ -30,9 +29,12 @@ function structuredLine(){
         .thenRight( quantity().then(unit()).then(ingredient()));
 }
 
-
+function parse(document){
+   return  structuredLine().rep().parse(stream.ofString(document));
+}
 
 
 module.exports={
-    structuredLine
+    structuredLine,
+    parse
 }
