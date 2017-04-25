@@ -44,21 +44,21 @@ Keywords: **variations** and **maintainability**
 
 ## Floor notation
 
-```js
-// N: Number Bundle, C: Chars Bundle
-import {stream, N,C} from 'parser-combinator';
-const document = '|4.6|';
 
-const floorCombinator= C.char('|')
-                        .thenRight( N.numberLiteral )    // we had [ '|' , 4.6], we keep 4.6
-                        .thenLeft( C.char('|') )   // we had [ 4.6 , '|' ], we keep 4.6
-                        .map(x => Math.floor(x)); // we transform selected value in meaningful value
+        // N: Number Bundle, C: Chars Bundle
+        import {stream, N,C} from 'parser-combinator';
+        const document = '|4.6|';
+        
+        const floorCombinator= C.char('|')
+                                .thenRight( N.numberLiteral )    // we had [ '|' , 4.6], we keep 4.6
+                                .thenLeft( C.char('|') )   // we had [ 4.6 , '|' ], we keep 4.6
+                                .map(x => Math.floor(x)); // we transform selected value in meaningful value
+        
+        // Parsec needs a stream of characters
+        const parsing = floorCombinator.parse(stream.ofString(document));
+        
+        console.log( parsing.value === 4 );
 
-// Parsec needs a stream of characters
-const parsing = floorCombinator.parse(stream.ofString(document));
-
-console.log( parsing.value === 4 );
-```
 
 
 
@@ -69,12 +69,12 @@ console.log( parsing.value === 4 );
 higher-order function that accepts several parsers as input and returns a new 
 parser as its output.*
  
-![](./images/curry-paste.png)
+!image : curry-paste.jpg
 
 ## The Monoid structure
 
   
-![](./images/parsec.png)
+!image : parsec.png
   
 
 
