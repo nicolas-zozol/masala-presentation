@@ -9,9 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@masala/parser": "^0.7.0",
     "cheerio": "^0.22.0",
     "html-to-text": "^3.2.0",
+    "html2plaintext": "^2.0.1",
+    "ncp": "^2.0.0",
     "node-fetch": "^1.6.3",
-    "parser-combinator": "^0.3.0"
+    "parser-combinator": "^0.3.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
   }
 }

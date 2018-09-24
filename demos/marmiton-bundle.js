@@ -1,4 +1,4 @@
-const {stream, F, C,N, T} = require('parser-combinator');
+const {stream, F, C,N, T} = require('@masala/parser');
 
 /**
 
@@ -10,7 +10,7 @@ Creating a bundle to split line with functions :
  **/
 
 function quantity(){
-    return N.integer;
+    return N.integer();
 }
 
 function unit(){
