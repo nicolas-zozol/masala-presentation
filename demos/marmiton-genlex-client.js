@@ -18,9 +18,6 @@ const tikka = 'recette_poulet-tikka-massala_21628.aspx';
 const selector = 'ul.recipe-ingredients__list';
 
 
-
-
-
 fetch(marmiton+tikka)
     .then( resp => resp.text())
     .then( html => $(selector, html) )  // cheerio

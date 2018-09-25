@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
 var h2p = require('html2plaintext')
-
 const $ = require('cheerio');
 const {Streams, F, C} = require('@masala/parser');
 

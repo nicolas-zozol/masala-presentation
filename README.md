@@ -10,7 +10,7 @@
 
 * Direct Style Monadic Parser Combinators For The Real World
 * Haskell **Parsec**
-* Existing: Jison, Bennu (Kephri) 
+* Existing in JS: Jison, Bennu (Kephri) 
 
 
 # Use cases (as today)
@@ -27,9 +27,11 @@ Keywords: **variations** and **maintainability**
 # Interesting points
 
 * Works in the browser
+* Zero dependence
 * 400 unit & integration tests 
 * 100% coverage
-* API not stable at all (0.x)
+* API now stable
+* Typescript d.ts (not tested enough)
 
 
 # Quick Examples
@@ -39,6 +41,7 @@ Keywords: **variations** and **maintainability**
  
 * Floor Notation
 * Tikka Masala
+* Operation
 
 # Explanations
 
@@ -83,8 +86,8 @@ parser as its output.*
 
 * Streams
 * Class `Parser`
-* What's the `fold` ?
-* Genlex
+* CharBundle, NumberBundle, FlowBundle
+* Genlex: ParserStream
 
 ... Live demo
 
@@ -94,31 +97,26 @@ parser as its output.*
 The flow bundle will mix ingredients together.
 
 * `F.try(parser).or(otherParser)` 
-* `F.any`: Accept any character
 * `F.not(parser)`: Accept anything else   
 * `F.eos`: Accepted if the Parser has reached the **E**nd **O**f **S**tream
 
 Others:
 
 * `F.lazy`: Makes a lazy evaluation.
-    - May be used for Left recursion   
-* `F.returns`: forces a returned value 
+    - May be used for Left recursionue 
 
 
 
 ## The Chars Bundle
 
 
-* `letter`: accept an ascii letter (**opened issue**)
+* `letter`: accept an ascii letter 
 * `letters`: accepts many letters and returns a string
-* `notChar(x)`: accept if next input is not `x`
 * `char(x)`: accept if next input is `x`
 * `lowerCase`: accept any next lower case inputs
-* `upperCase`: accept any next uppercase inputs
 *  ...
 
 ## The Numbers Bundle
-
 
 * `numberLiteral`: accept any float number, such as -2.3E+24    
 * `digit`: accept any single digit, and return a **single char** 
@@ -133,57 +131,81 @@ Others:
 
 ## Under development
 
-* These bundles are under development
-* They will move with the first use cases implementations
+* Json Parser
+* Bricks for custom markdown
 * 2 paying clients
     - Extractor
     - Markdown (quick notes)
 
-## The Token Bundle
+
+## Lotech
+
+* Markdown for those who write a lot
+* Business specific plugins and mini-application
+* `!bang`: specific command with autocompletion
+* `!!bangbang`: newbie popup, access to apps (table, ...)
+
+### Quizz Example
 
 
-* `email`: accept a very large number of emails
-* `date`: 2017-03-27 or 27/03/2017
-* `blank(nothing|string|parser)`: 
-    - accept standard blanks (space, tab)
-    - or defined characters
-    - or a combined Parser
-* `eol`: accept **E**nd **O**f **L**ine `\n` or `\r\n`
+        !quizz: La renaissance
 
-## The Extractor Bundle
-
-* Find valuable data in complex text
-    - emails sent by platforms
-    - website crawling...
-* The `X` is a class to make customization easy
-
-### X constructor
-
-`const x = new X(options)` with default options to:
-
-        {
-            spacesCharacters:' \n',
-            wordSeparators:C.charIn(' \n:-,;'),
-            letter : C.letter,
-            moreSeparators: null
-        }
+<br/>        
+        
+        !q: Quelle année pour Marignan ?        
+        
+        ** 1515
+        * 1525
+        * 1625
+        
+<br/>
+        
+        !include: @jeanne/renaissance 
 
 
-## Live demo
+### Course Example
 
-... Improving again the parsing
+... 95% pure markdown
+
+        !image class=right: gutenberg.jpg
+
+<br/>
+        
+        !image size=small right=right: @nicolas/renaissance.jpg        
+        !image small right: @nicolas/renaissance.jpg
+     
+<br/>
+          
+        !! => 'bang-bang' ; ouvre une boite de dialogue applicative
+            tableaux, addons, ...
 
 
-## JSON Bundle and Markdown Bundle
+### Task Force
 
-* Total Customization of the markdown parser 
+* Mini-app
+* Json pur < Lotech < Interface graphique
+ 
+<br/>
+
+        !task: ranger le bureau       
+        !team name=Bricolo: Réparer des choses faciles
+        !captain: Nicolas
+        * Magali
+        * Your name here
+
+<br/>
+        
+        !team name=Menuiserie: Fermer la cage d'escalier
+        !captain: Pascal
+        *  Your name here
+       
+
+
+
 
 ## Gotcha's
 
-* The long Walk
-* Complicated to find *branches*
-* Hard to debug after 20 `parse()` 
-* Performance issues
-* Sometimes locked
+* Hard to debug, especially Genlex 
+* Sometimes locked (`optrep().rep()`)
 
 ## Questions ?

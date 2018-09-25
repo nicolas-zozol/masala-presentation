@@ -17,7 +17,6 @@ function unit() {
     //const knownUnits = ['cuillère à café', 'g', 'l', 'ml', 'cuillère', 'cuillères']
     //F.stringIn(knownUnits)
     return C.letters();
-
 }
 
 function ingredient() {
